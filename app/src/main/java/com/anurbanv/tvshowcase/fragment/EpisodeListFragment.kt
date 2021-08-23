@@ -15,11 +15,13 @@ import com.google.gson.JsonObject
 class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
     private val gson = Gson()
+    var onItemClicked: (Episode) -> Unit = {}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentEpisodeListBinding.bind(view)
 
         val adapter = EpisodeAdapter()
+        adapter.onItemClicked = onItemClicked
 
         binding.rvEpisodes.layoutManager = LinearLayoutManager(requireContext())
         binding.rvEpisodes.adapter = adapter

@@ -16,6 +16,8 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
             notifyDataSetChanged()
         }
 
+    var onItemClicked: (Episode) -> Unit = {}
+
     class ViewHolder(val binding: ItemEpisodeBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +38,8 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
         Glide.with(holder.binding.root).load(episode.imageUrl)
             .centerCrop().into(holder.binding.ivCover)
+
+        holder.binding.root.setOnClickListener { onItemClicked(episode) }
     }
 
     override fun getItemCount() = episodeList.size
