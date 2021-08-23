@@ -16,6 +16,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
     private val gson = Gson()
     var onItemClicked: (Episode) -> Unit = {}
+    lateinit var title: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentEpisodeListBinding.bind(view)
@@ -28,6 +29,8 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
         val episodeList = parseEpisodesJson()
         adapter.episodeList = episodeList
+
+        binding.tvTitle.text = title
     }
 
     private fun parseEpisodesJson(): List<Episode> {
@@ -35,6 +38,8 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
 
         val jsonString = JsonUtil.loadJsonFromAssets(requireContext(), "hbo-silicon-valley.json")
         val fromJson = gson.fromJson(jsonString, JsonObject::class.java)
+
+        title = fromJson.get("title").asString
 
         for (seasonJson in fromJson.get("seasons").asJsonArray) {
             for (episodeJson in seasonJson.asJsonObject.get("episodes").asJsonArray) {
