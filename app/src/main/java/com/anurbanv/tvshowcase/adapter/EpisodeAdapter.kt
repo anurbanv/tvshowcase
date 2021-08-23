@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.anurbanv.tvshowcase.databinding.ItemEpisodeBinding
 import com.anurbanv.tvshowcase.entity.Episode
+import com.bumptech.glide.Glide
 
 class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
@@ -27,6 +28,8 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
         val episode = episodeList[position]
 
         holder.binding.tvName.text = episode.name
+        Glide.with(holder.binding.root).load(episode.imageUrl)
+            .centerCrop().into(holder.binding.ivCover)
     }
 
     override fun getItemCount() = episodeList.size
