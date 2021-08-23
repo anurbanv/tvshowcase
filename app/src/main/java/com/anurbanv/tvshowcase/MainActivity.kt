@@ -19,13 +19,17 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        if (savedInstanceState == null) {
+        // todo create landscape compatible view
+
+        if (!this::episodeListFragment.isInitialized) {
             episodeListFragment = EpisodeListFragment()
             episodeListFragment.onItemClicked = {
                 episodeDetailFragment.episode = it
                 showEpisodeDetailFragment()
             }
+        }
 
+        if (!this::episodeDetailFragment.isInitialized) {
             episodeDetailFragment = EpisodeDetailFragment()
             episodeDetailFragment.onBackClick = { showEpisodeListFragment() }
         }
