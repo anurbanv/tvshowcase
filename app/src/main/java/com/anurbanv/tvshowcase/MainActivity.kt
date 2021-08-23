@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             episodeDetailFragment = EpisodeDetailFragment()
+            episodeDetailFragment.onBackClick = { showEpisodeListFragment() }
         }
 
         showEpisodeListFragment()
