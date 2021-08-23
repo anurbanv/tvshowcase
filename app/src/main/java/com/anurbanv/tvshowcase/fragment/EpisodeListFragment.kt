@@ -21,6 +21,7 @@ class EpisodeListFragment : Fragment(R.layout.fragment_episode_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val binding = FragmentEpisodeListBinding.bind(view)
 
+        // todo some sort of season filter/selector
         val adapter = EpisodeAdapter()
         adapter.onItemClicked = onItemClicked
 
