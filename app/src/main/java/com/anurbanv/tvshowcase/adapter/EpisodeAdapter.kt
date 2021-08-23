@@ -28,6 +28,12 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
         val episode = episodeList[position]
 
         holder.binding.tvName.text = episode.name
+        // todo extract to string resource
+        holder.binding.tvSeason.text = "Season ${episode.season}"
+        holder.binding.tvEpisode.text = "Episode ${episode.number}"
+
+        holder.binding.ivCover.clipToOutline = true
+
         Glide.with(holder.binding.root).load(episode.imageUrl)
             .centerCrop().into(holder.binding.ivCover)
     }
