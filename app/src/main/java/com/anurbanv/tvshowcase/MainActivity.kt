@@ -1,7 +1,11 @@
 package com.anurbanv.tvshowcase
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.anurbanv.tvshowcase.adapter.EpisodeAdapter
+import com.anurbanv.tvshowcase.databinding.ActivityMainBinding
 import com.anurbanv.tvshowcase.entity.Episode
 import com.anurbanv.tvshowcase.util.JsonUtil
 import com.google.gson.Gson
@@ -13,9 +17,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
+
+        val adapter = EpisodeAdapter()
+
+        binding.rvEpisodes.layoutManager = LinearLayoutManager(this)
+        binding.rvEpisodes.adapter = adapter
 
         val episodeList = parseEpisodesJson()
+        adapter.episodeList = episodeList
     }
 
     private fun parseEpisodesJson(): List<Episode> {

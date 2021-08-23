@@ -1,6 +1,7 @@
 package com.anurbanv.tvshowcase.util
 
 import android.content.Context
+import android.util.Log
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -16,7 +17,8 @@ object JsonUtil {
             inputStream.close()
             json = String(buffer, Charset.defaultCharset())
         } catch (ex: IOException) {
-            ex.printStackTrace()
+            // todo use some logger class/library
+            Log.e("TVShowCase", "Failed to read json file", ex)
         }
 
         return json
