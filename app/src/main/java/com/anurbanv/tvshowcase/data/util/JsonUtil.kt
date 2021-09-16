@@ -1,4 +1,4 @@
-package com.anurbanv.tvshowcase.util
+package com.anurbanv.tvshowcase.data.util
 
 import android.content.Context
 import android.util.Log

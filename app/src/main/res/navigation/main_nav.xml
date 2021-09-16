@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/episodeListFragment">
+
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="com.anurbanv.tvshowcase.ui.episodes.list.EpisodeListFragment"
+        android:label="Episodes" >
+        <action
+            android:id="@+id/showEpisodeDetails"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.anurbanv.tvshowcase.ui.episodes.details.EpisodeDetailFragment"
+        android:label="Episode details" >
+        <argument
+            android:name="episode"
+            app:argType="com.anurbanv.tvshowcase.data.Episode" />
+    </fragment>
+</navigation>

@@ -1,10 +1,10 @@
-package com.anurbanv.tvshowcase.adapter
+package com.anurbanv.tvshowcase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.anurbanv.tvshowcase.data.Episode
 import com.anurbanv.tvshowcase.databinding.ItemEpisodeBinding
-import com.anurbanv.tvshowcase.entity.Episode
 import com.bumptech.glide.Glide
 
 class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
@@ -29,14 +29,14 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val episode = episodeList[position]
 
-        holder.binding.tvName.text = episode.name
+        holder.binding.tvName.text = episode.title
         // todo extract to string resource
-        holder.binding.tvSeason.text = "Season ${episode.season}"
-        holder.binding.tvEpisode.text = "Episode ${episode.number}"
+        holder.binding.tvSeason.text = "Season ${episode.seasonNr}"
+        holder.binding.tvEpisode.text = "Episode ${episode.episodeNr}"
 
         holder.binding.ivCover.clipToOutline = true
 
-        Glide.with(holder.binding.root).load(episode.imageUrl)
+        Glide.with(holder.binding.root).load(episode.posterUrl)
             .centerCrop().into(holder.binding.ivCover)
 
         holder.binding.root.setOnClickListener { onItemClicked(episode) }
